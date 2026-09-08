@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <!-- Viewport ajustado para evitar zoom acidental no iOS e garantir suporte a telas com notch/Home Bar -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Para Brendha, Com Todo Meu Amor ❤️</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-red: #c1121f;
+            --deep-crimson: #780000;
+            --bright-rose: #ff4d6d;
+            --soft-pink: #ffb3c1;
+            --blush-pink: #ffccd5;
+            --light-bg: #fff0f3;
+            --white: #ffffff;
+            --text-main: #2b2d42;
+            --shadow-romantic: 0 10px 25px rgba(255, 77, 109, 0.2);
+            --glass-bg: rgba(255, 255, 255, 0.95);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ffccd5 0%, #fff0f3 50%, #ff4d6d 100%);
+            /* dvh garante que o layout respeite as barras do Safari do iOS */
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+            color: var(--text-main);
+            padding: 10px;
+            /* Suporte para notch do iPhone */
+            padding-top: max(10px, env(safe-area-inset-top));
+            padding-bottom: max(10px, env(safe-area-inset-bottom));
+        }
+
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .heart-particle {
+            position: absolute;
+            color: rgba(255, 77, 109, 0.35);
+            animation: floatUp 8s infinite linear;
+            font-size: 1.2rem;
+            will-change: transform, opacity;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(105vh) scale(0.5) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.8; }
+            100% { transform: translateY(-10vh) scale(1.2) rotate(360deg); opacity: 0; }
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 900px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            box-shadow: var(--shadow-romantic);
+            border: 1px solid rgba(255, 179, 193, 0.6);
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+        }
+
+        .navbar-steps {
+            display: flex;
+            background: linear-gradient(90deg, var(--deep-crimson), var(--primary-red), var(--bright-rose));
+            padding: 8px 4px;
+            justify-content: space-around;
+            box-shadow: 0 4px 12px rgba(120, 0, 0, 0.15);
+        }
+
+        .step-tab {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.85rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 10px 14px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            text-align: center;
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .step-tab.active {
+            color: var(--white);
+            background: rgba(255, 255, 255, 0.25);
+            font-weight: 600;
+        }
+
+        .screen-content {
+            display: none;
+            padding: 20px 15px;
+            flex-grow: 1;
+            animation: fadeInSlide 0.4s ease-out;
+            width: 100%;
+        }
+
+        .screen-content.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @keyframes fadeInSlide {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .romantic-title {
+            font-family: 'Playfair Display', serif;
+            color: var(--deep-crimson);
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 4px;
+        }
+
+        .romantic-subtitle {
+            font-family: 'Dancing Script', cursive;
+            color: var(--bright-rose);
+            font-size: 1.3rem;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 380px;
+            background: var(--white);
+            padding: 25px 20px;
+            border-radius: 18px;
+            box-shadow: 0 8px 20px rgba(255, 77, 109, 0.12);
+            border: 1px solid var(--blush-pink);
+            text-align: center;
+        }
+
+        .heart-badge {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ff4d6d, #c1121f);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 15px auto;
+            box-shadow: 0 6px 15px rgba(255, 77, 109, 0.35);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            color: var(--deep-crimson);
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--bright-rose);
+            font-size: 0.9rem;
+        }
+
+        /* 16px no min-width evita que o iOS Safari dê zoom automático no input ao focar */
+        .form-group input {
+            width: 100%;
+            padding: 12px 12px 12px 38px;
+            border: 2px solid var(--blush-pink);
+            border-radius: 10px;
+            outline: none;
+            font-size: 16px;
+            transition: all 0.3s;
+            background: var(--light-bg);
+            -webkit-appearance: none;
+        }
+
+        .form-group input:focus {
+            border-color: var(--bright-rose);
+            background: var(--white);
+        }
+
+        .btn-romantic, .btn-secondary {
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            -webkit-appearance: none;
+            user-select: none;
+        }
+
+        .btn-romantic {
+            background: linear-gradient(135deg, var(--bright-rose), var(--primary-red));
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3);
+        }
+
+        .btn-romantic:active {
+            transform: scale(0.97);
+        }
+
+        .btn-secondary {
+            background: var(--white);
+            color: var(--deep-crimson);
+            border: 2px solid var(--soft-pink);
+            width: auto;
+        }
+
+        .btn-secondary:active {
+            background: var(--light-bg);
+            transform: scale(0.97);
+        }
+
+        .error-message {
+            color: var(--primary-red);
+            font-size: 0.85rem;
+            margin-top: 10px;
+            display: none;
+            font-weight: 500;
+            background: #ffe6e8;
+            padding: 8px;
+            border-radius: 8px;
+        }
+
+        .letter-wrapper {
+            width: 100%;
+            max-width: 700px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .romantic-paper {
+            width: 100%;
+            background: #fffafa;
+            border: 2px solid var(--soft-pink);
+            border-left: 5px solid var(--bright-rose);
+            border-radius: 12px;
+            padding: 12px;
+            box-shadow: 0 5px 15px rgba(255, 179, 193, 0.2);
+            margin-bottom: 15px;
+        }
+
+        .romantic-paper textarea {
+            width: 100%;
+            height: 50vh;
+            max-height: 380px;
+            min-height: 220px;
+            border: none;
+            background: transparent;
+            resize: none;
+            outline: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .action-group {
+            display: flex;
+            gap: 10px;
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .gallery-wrapper {
+            width: 100%;
+            max-width: 750px;
+            text-align: center;
+        }
+
+        .upload-box {
+            background: var(--white);
+            border: 2px dashed var(--bright-rose);
+            border-radius: 14px;
+            padding: 12px;
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .upload-box input[type=file] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .upload-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: var(--deep-crimson);
+            font-size: 0.85rem;
+        }
+
+        .upload-content i {
+            font-size: 1.5rem;
+            color: var(--bright-rose);
+        }
+
+        .json-actions {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+            justify-content: center;
+        }
+
+        .json-actions .btn-secondary {
+            flex: 1;
+            font-size: 0.8rem;
+            padding: 8px 10px;
+        }
+
+        .slider-viewport {
+            position: relative;
+            width: 100%;
+            height: 45vh;
+            max-height: 380px;
+            min-height: 250px;
+            background: #000;
+            border-radius: 14px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--soft-pink);
+        }
+
+        .slide-item {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: none;
+        }
+
+        .slide-item.active {
+            display: block;
+        }
+
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.85);
+            color: var(--deep-crimson);
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            -webkit-appearance: none;
+        }
+
+        .arrow-prev { left: 8px; }
+        .arrow-next { right: 8px; }
+
+        .slide-counter {
+            position: absolute;
+            bottom: 8px;
+            background: rgba(0, 0, 0, 0.7);
+            color: var(--white);
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.75rem;
+        }
+
+        .empty-state {
+            color: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            font-size: 0.85rem;
+        }
+
+        .empty-state i {
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+            color: var(--soft-pink);
+        }
+
+        .thumbnails-bar {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+            overflow-x: auto;
+            padding: 4px 2px;
+            width: 100%;
+            -webkit-overflow-scrolling: touch; /* Scroll suave no iOS */
+        }
+
+        .thumb-item {
+            width: 52px;
+            height: 52px;
+            border-radius: 8px;
+            object-fit: cover;
+            cursor: pointer;
+            opacity: 0.5;
+            flex-shrink: 0;
+            border: 2px solid transparent;
+        }
+
+        .thumb-item.active {
+            border-color: var(--bright-rose);
+            opacity: 1;
+        }
+
+        /* Ajustes específicos para telas pequenas (smartphones) */
+        @media (max-width: 480px) {
+            body { padding: 6px; }
+            .navbar-steps { padding: 6px 2px; }
+            .step-tab span { display: none; } /* Oculta o texto das abas no mobile para economizar espaço */
+            .step-tab { padding: 10px 18px; font-size: 1.2rem; }
+            .romantic-title { font-size: 1.3rem; }
+            .romantic-subtitle { font-size: 1.1rem; }
+            .action-group { flex-direction: column; gap: 8px; }
+            .action-group button { width: 100%; }
+            .json-actions { flex-direction: row; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="floating-hearts" id="heartsContainer"></div>
+
+    <div class="app-container">
+        <div class="navbar-steps">
+            <div class="step-tab active" id="tab-1" onclick="navigateToScreen(1)">
+                <i class="fa-solid fa-lock"></i>
+                <span>Acesso Secreto</span>
+            </div>
+            <div class="step-tab" id="tab-2" onclick="navigateToScreen(2)">
+                <i class="fa-solid fa-envelope-open-text"></i>
+                <span>Minha Declaração</span>
+            </div>
+            <div class="step-tab" id="tab-3" onclick="navigateToScreen(3)">
+                <i class="fa-solid fa-photo-film"></i>
+                <span>Nossos Momentos</span>
+            </div>
+        </div>
+
+        <!-- TELA 1: LOGIN -->
+        <div class="screen-content active" id="screen-login">
+            <div class="login-card">
+                <div class="heart-badge">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <h1 class="romantic-title">Portal do Amor</h1>
+                <p class="romantic-subtitle">Exclusivo para Brendha</p>
+
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="username">Usuário Especial</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" id="username" placeholder="Digite seu usuário..." required autocomplete="off" autocapitalize="off">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Senha Secreta</label>
+                        <div class="input-wrapper">
+                            <i class="fa-solid fa-key"></i>
+                            <input type="password" id="password" placeholder="Digite sua senha..." required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-romantic">
+                        <span>Entrar</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                    <div class="error-message" id="loginError">
+                        <i class="fa-solid fa-circle-exclamation"></i> Usuário ou senha incorretos!
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- TELA 2: CARTA DE AMOR -->
+        <div class="screen-content" id="screen-letter">
+            <div class="letter-wrapper">
+                <h1 class="romantic-title">Uma Carta Para Você</h1>
+                <p class="romantic-subtitle">Nossa história, nossa família e meu eterno amor</p>
+
+                <div class="romantic-paper">
+                    <textarea id="letterText" placeholder="Minha querida Brendha..."></textarea>
+                </div>
+
+                <div class="action-group">
+                    <button class="btn-secondary" onclick="resetLetterDefault()">
+                        <i class="fa-solid fa-rotate-left"></i> Restaurar Texto
+                    </button>
+                    <button class="btn-romantic" onclick="navigateToScreen(3)">
+                        <span>Ver Galeria</span>
+                        <i class="fa-solid fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TELA 3: GALERIA DE FOTOS E VÍDEOS -->
+        <div class="screen-content" id="screen-media">
+            <div class="gallery-wrapper">
+                <h1 class="romantic-title">Nossas Memórias</h1>
+                <p class="romantic-subtitle">Sua beleza em cada detalhe</p>
+
+                <div class="upload-box">
+                    <input type="file" id="mediaInput" accept="image/*,video/*" multiple onchange="handleMediaUpload(event)">
+                    <div class="upload-content">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <strong>Carregar Fotos/Vídeos</strong>
+                    </div>
+                </div>
+
+                <div class="json-actions">
+                    <button class="btn-secondary" onclick="exportDataToJSON()">
+                        <i class="fa-solid fa-download"></i> Salvar JSON
+                    </button>
+                    <button class="btn-secondary" onclick="document.getElementById('jsonFileInput').click()">
+                        <i class="fa-solid fa-upload"></i> Importar JSON
+                    </button>
+                    <input type="file" id="jsonFileInput" accept=".json" style="display: none;" onchange="importDataFromJSON(event)">
+                </div>
+
+                <div class="slider-viewport" id="sliderViewport">
+                    <div class="empty-state" id="emptyState">
+                        <i class="fa-regular fa-images"></i>
+                        <p>Nenhuma mídia carregada</p>
+                    </div>
+
+                    <button class="nav-arrow arrow-prev" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="nav-arrow arrow-next" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></button>
+
+                    <div class="slide-counter" id="slideCounter" style="display: none;">1 / 1</div>
+                </div>
+
+                <div class="thumbnails-bar" id="thumbBar"></div>
+
+                <div class="action-group" style="margin-top: 15px;">
+                    <button class="btn-secondary" onclick="navigateToScreen(2)">
+                        <i class="fa-solid fa-arrow-left"></i> Carta
+                    </button>
+                    <button class="btn-secondary" id="autoPlayBtn" onclick="toggleAutoplay()" style="display: none;">
+                        <i class="fa-solid fa-play"></i> Slideshow
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const CREDENTIAL_USER = "brendha";
+        const CREDENTIAL_PASS = "amoodani";
+
+        const DEFAULT_LETTER = `Minha amada Brendha,
+
+Escrevo esta mensagem do fundo mais sincero da minha alma para te dizer tudo aquilo que, às vezes, as palavras do dia a dia não conseguem expressar plenamente. Olhar para a nossa caminhada me enche de orgulho e gratidão. A restauração do nosso relacionamento não foi apenas uma vitória do nosso amor, mas o recomeço mais lindo que poderíamos ter escolhido. Cada obstáculo superado só serviu para provar que a nossa história é forte, verdadeira e foi feita para durar.
+
+Sabe, meu amor, nunca deixo de me impressionar com a sua beleza. Você é absurdamente linda, não apenas por fora com esse sorriso capaz de iluminar qualquer dia escuro e esse olhar que ainda faz meu coração acelerar como no primeiro dia, mas pela beleza rara que você carrega na alma. Sua doçura, sua força, sua elegância e a forma única como você cuida de tudo ao seu redor me encantam a cada segundo.
+
+E como se não bastasse ser essa mulher maravilhosa, você me deu o bem mais precioso do universo: a nossa amada filha Helena. Olhar para você cuidando da nossa pequena, ver os tracos dela misturados com a sua essência, me faz admirar ainda mais a mulher e a mãe incrível que você é. A Helena é o símbolo perfeito da restauração e do triunfo do nosso amor.
+
+Obrigado por ser o meu porto seguro, minha melhor amiga, minha esposa e o amor da minha vida. Eu te amo incondicionalmente, hoje, amanhã e por toda a minha vida! ❤️`;
+
+        let mediaItems = [];
+        let currentIndex = 0;
+        let autoplayInterval = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            createFloatingHearts();
+            document.getElementById('letterText').value = DEFAULT_LETTER;
+            setupSwipeGestures();
+        });
+
+        function createFloatingHearts() {
+            const container = document.getElementById('heartsContainer');
+            const heartIcons = ['❤️', '💖', '💕'];
+            
+            for (let i = 0; i < 12; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart-particle';
+                heart.innerText = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.animationDuration = (4 + Math.random() * 5) + 's';
+                heart.style.animationDelay = (Math.random() * 3) + 's';
+                container.appendChild(heart);
+            }
+        }
+
+        function navigateToScreen(screenNum) {
+            document.querySelectorAll('.screen-content').forEach(screen => screen.classList.remove('active'));
+            document.querySelectorAll('.step-tab').forEach(tab => tab.classList.remove('active'));
+
+            if (screenNum === 1) {
+                document.getElementById('screen-login').classList.add('active');
+                document.getElementById('tab-1').classList.add('active');
+            } else if (screenNum === 2) {
+                document.getElementById('screen-letter').classList.add('active');
+                document.getElementById('tab-2').classList.add('active');
+            } else if (screenNum === 3) {
+                document.getElementById('screen-media').classList.add('active');
+                document.getElementById('tab-3').classList.add('active');
+            }
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const userVal = document.getElementById('username').value.trim();
+            const passVal = document.getElementById('password').value.trim();
+            const errorElement = document.getElementById('loginError');
+
+            if (userVal.toLowerCase() === CREDENTIAL_USER.toLowerCase() && passVal === CREDENTIAL_PASS) {
+                errorElement.style.display = 'none';
+                navigateToScreen(2);
+            } else {
+                errorElement.style.display = 'block';
+            }
+        });
+
+        function resetLetterDefault() {
+            document.getElementById('letterText').value = DEFAULT_LETTER;
+        }
+
+        function handleMediaUpload(event) {
+            const files = Array.from(event.target.files);
+            if (files.length === 0) return;
+
+            files.forEach(file => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    mediaItems.push({
+                        name: file.name,
+                        type: file.type.startsWith('video/') ? 'video' : 'image',
+                        dataUrl: e.target.result
+                    });
+                    renderGallery();
+                };
+                reader.readAsDataURL(file);
+            });
+            
+            currentIndex = 0;
+        }
+
+        function exportDataToJSON() {
+            const payload = {
+                letter: document.getElementById('letterText').value,
+                mediaItems: mediaItems
+            };
+
+            const jsonString = JSON.stringify(payload);
+            const blob = new Blob([jsonString], { type: "application/json" });
+            const downloadUrl = URL.createObjectURL(blob);
+            
+            const link = document.createElement('a');
+            link.href = downloadUrl;
+            link.download = "dados_brendha.json";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function importDataFromJSON(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const importedData = JSON.parse(e.target.result);
+                    
+                    if (importedData.letter !== undefined) {
+                        document.getElementById('letterText').value = importedData.letter;
+                    }
+                    if (Array.isArray(importedData.mediaItems)) {
+                        mediaItems = importedData.mediaItems;
+                        currentIndex = 0;
+                        renderGallery();
+                    }
+                } catch (err) {
+                    alert("Erro ao ler o arquivo JSON.");
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        function renderGallery() {
+            const viewport = document.getElementById('sliderViewport');
+            const emptyState = document.getElementById('emptyState');
+            const counter = document.getElementById('slideCounter');
+            const thumbBar = document.getElementById('thumbBar');
+            const autoPlayBtn = document.getElementById('autoPlayBtn');
+
+            viewport.querySelectorAll('.slide-item').forEach(el => el.remove());
+            thumbBar.innerHTML = '';
+
+            if (mediaItems.length === 0) {
+                emptyState.style.display = 'block';
+                counter.style.display = 'none';
+                autoPlayBtn.style.display = 'none';
+                return;
+            }
+
+            emptyState.style.display = 'none';
+            counter.style.display = 'block';
+            autoPlayBtn.style.display = 'inline-flex';
+
+            mediaItems.forEach((item, idx) => {
+                let slideEl;
+                if (item.type === 'image') {
+                    slideEl = document.createElement('img');
+                    slideEl.src = item.dataUrl;
+                } else {
+                    slideEl = document.createElement('video');
+                    slideEl.src = item.dataUrl;
+                    slideEl.controls = true;
+                    // Atributos obrigatórios para rodar vídeos inline no Safari/iOS
+                    slideEl.setAttribute('playsinline', '');
+                    slideEl.setAttribute('webkit-playsinline', '');
+                    slideEl.style.maxHeight = '100%';
+                }
+
+                slideEl.classList.add('slide-item');
+                if (idx === currentIndex) slideEl.classList.add('active');
+                viewport.appendChild(slideEl);
+
+                const thumb = document.createElement('img');
+                thumb.src = item.type === 'image' ? item.dataUrl : 'https://cdn-icons-png.flaticon.com/512/1179/1179069.png';
+                thumb.classList.add('thumb-item');
+                if (idx === currentIndex) thumb.classList.add('active');
+                thumb.onclick = () => goToSlide(idx);
+                thumbBar.appendChild(thumb);
+            });
+
+            updateCounter();
+        }
+
+        function updateCounter() {
+            const counter = document.getElementById('slideCounter');
+            counter.innerText = `${currentIndex + 1} / ${mediaItems.length}`;
+
+            const thumbs = document.querySelectorAll('.thumb-item');
+            thumbs.forEach((t, i) => {
+                if (i === currentIndex) {
+                    t.classList.add('active');
+                    t.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+                } else {
+                    t.classList.remove('active');
+                }
+            });
+        }
+
+        function showSlide(index) {
+            const slides = document.querySelectorAll('.slide-item');
+            if (slides.length === 0) return;
+
+            if (slides[currentIndex] && slides[currentIndex].tagName === 'VIDEO') {
+                slides[currentIndex].pause();
+            }
+
+            slides[currentIndex].classList.remove('active');
+            currentIndex = index;
+
+            if (currentIndex >= slides.length) currentIndex = 0;
+            if (currentIndex < 0) currentIndex = slides.length - 1;
+
+            slides[currentIndex].classList.add('active');
+            updateCounter();
+        }
+
+        function nextSlide() { showSlide(currentIndex + 1); }
+        function prevSlide() { showSlide(currentIndex - 1); }
+        function goToSlide(idx) { showSlide(idx); }
+
+        function toggleAutoplay() {
+            const btn = document.getElementById('autoPlayBtn');
+            if (autoplayInterval) {
+                clearInterval(autoplayInterval);
+                autoplayInterval = null;
+                btn.innerHTML = '<i class="fa-solid fa-play"></i> Slideshow';
+            } else {
+                nextSlide();
+                autoplayInterval = setInterval(nextSlide, 3500);
+                btn.innerHTML = '<i class="fa-solid fa-pause"></i> Pausar';
+            }
+        }
+
+        // Suporte para deslizar com o dedo na galeria (Touch Gestures / Swipe)
+        function setupSwipeGestures() {
+            const viewport = document.getElementById('sliderViewport');
+            let touchStartX = 0;
+            let touchEndX = 0;
+
+            viewport.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            viewport.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+
+            function handleSwipe() {
+                const swipeThreshold = 40;
+                if (touchEndX < touchStartX - swipeThreshold) {
+                    nextSlide(); // Deslizou para a esquerda
+                } else if (touchEndX > touchStartX + swipeThreshold) {
+                    prevSlide(); // Deslizou para a direita
+                }
+            }
+        }
+    </script>
+</body>
+</html>
